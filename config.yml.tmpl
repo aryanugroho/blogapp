@@ -1,0 +1,65 @@
+database:
+  master:
+    driver: "mysql"
+    name: "$DB_NAME"
+    host: "$DB_HOST"
+    port: "3306"
+    user: DATABASE_MASTER_USER
+    password: DATABASE_MASTER_PASSWORD
+    maxopen: DATABASE_MASTER_MAXOPEN
+    maxidle: DATABASE_MASTER_MAXIDLE
+    maxlifetime: DATABASE_MASTER_MAXLIFETIME
+  slave:
+    driver: "mysql"
+    name: "$DB_NAME"
+    host: "$DB_HOST"
+    port: "3306"
+    user: DATABASE_SLAVE_USER
+    password: DATABASE_SLAVE_PASSWORD
+    maxopen: DATABASE_SLAVE_MAXOPEN
+    maxidle: DATABASE_SLAVE_MAXIDLE
+    maxlifetime: DATABASE_SLAVE_MAXLIFETIME
+
+app:
+  env: "$FRAUD_ENV"
+  dbDebug: "$FRAUD_DEBUG"
+  apiPrefix: "fraud"
+  apiKey: APP_APIKEY
+
+server:
+  port: "80"
+
+externalAPI:
+  capt: 
+    baseURL: "https://b2c-act-dev-box.flip.id/api/internal"
+    apiKey: EXTERNALAPI_CAPT_APIKEY
+  dt:
+    baseURL: "https://b2c-act-dev-box.flip.id/api/internal/domestic-transfer-transactions"
+    apiKey: EXTERNALAPI_DT_APIKEY
+
+apikey:
+  oppa: APIKEY_OPPA
+  capt: APIKEY_CAPT
+
+gcloud:
+  projectid: GCLOUD_PROJECTID
+
+consumers:
+  enable: ${CONSUMERS_ENABLE}
+  decisionSession:
+    topic: "$CONSUMERS_DECISIONSSESSION_TOPIC"
+    subscription: "$CONSUMERS_DECISIONSSESSION_SUBSCRIPTION"
+    maxoutstandingmessages: $CONSUMERS_DECISIONSSESSION_MAXOUTSTANDINGMESSAGES
+    numgoroutines: $CONSUMERS_DECISIONSSESSION_NUMGOROUTINES
+  decisionTransaction:
+    topic: "$CONSUMERS_DECISIONTRANSACTION_TOPIC"
+    subscription: "$CONSUMERS_DECISIONTRANSACTION_SUBSCRIPTION"
+    maxoutstandingmessages: $CONSUMERS_DECISIONTRANSACTION_MAXOUTSTANDINGMESSAGES
+    numgoroutines: $CONSUMERS_DECISIONTRANSACTION_NUMGOROUTINES
+
+cron:
+  BlacklistDevice:
+    toggle: ${CRON_BLACKLISTDEVICE_TOGGLE}
+    interval: "$CRON_BLACKLISTDEVICE_INTERVAL"
+    limit: $CRON_BLACKLISTDEVICE_LIMIT
+  
